@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lshsd.appinfo.mapper.appVersion.AppVersionMapper">
+
+    <resultMap type="com.lshsd.appinfo.pojo.AppVersion" id="AppVersionMap">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="versioncode" column="versionCode" jdbcType="VARCHAR"/>
+        <result property="infoid" column="infoId" jdbcType="INTEGER"/>
+        <result property="versionapksize" column="versionApkSize" jdbcType="VARCHAR"/>
+        <result property="versionapkurl" column="versionApkUrl" jdbcType="VARCHAR"/>
+        <result property="createdate" column="createDate" jdbcType="TIMESTAMP"/>
+        <result property="modifydate" column="modifyDate" jdbcType="TIMESTAMP"/>
+        <result property="versionstatus" column="versionStatus" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="AppVersionMap">
+        select id,
+               versionCode,
+               infoId,
+               versionApkSize,
+               versionApkUrl,
+               createDate,
+               modifyDate,
+               versionStatus
+        from appinfo.app_version
+        where id = #{id}
+    </select>
+
+    <!--查询总量-->
+    <select id="queryCount" resultType="int">
+        select count(1)
+        from appinfo.app_version
+    </select>
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="AppVersionMap">
+        select id,
+               versionCode,
+               infoId,
+               versionApkSize,
+               versionApkUrl,
+               createDate,
+               modifyDate,
+               versionStatus
+        from appinfo.app_version limit #{offset}, #{limit}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="AppVersionMap">
+        select
+        id, versionCode, infoId, versionApkSize, versionApkUrl, createDate, modifyDate, versionStatus
+        from appinfo.app_version
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="versioncode != null and versioncode != ''">
+                and versionCode = #{versioncode}
+            </if>
+            <if test="infoid != null">
+                and infoId = #{infoid}
+            </if>
+            <if test="versionapksize != null and versionapksize != ''">
+                and versionApkSize = #{versionapksize}
+            </if>
+            <if test="versionapkurl != null and versionapkurl != ''">
+                and versionApkUrl = #{versionapkurl}
+            </if>
+            <if test="createdate != null">
+                and createDate = #{createdate}
+            </if>
+            <if test="modifydate != null">
+                and modifyDate = #{modifydate}
+            </if>
+            <if test="versionstatus != null">
+                and versionStatus = #{versionstatus}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+        insert into appinfo.app_version(versionCode, infoId, versionApkSize, versionApkUrl, createDate, modifyDate,
+                                        versionStatus)
+        values (#{versioncode}, #{infoid}, #{versionapksize}, #{versionapkurl}, #{createdate}, #{modifydate},
+                #{versionstatus})
+    </insert>
+
+    <insert id="insertBatch" keyProperty="id" useGeneratedKeys="true">
+        insert into appinfo.app_version(versionCode, infoId, versionApkSize, versionApkUrl, createDate, modifyDate,
+        versionStatus)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.versioncode}, #{entity.infoid}, #{entity.versionapksize}, #{entity.versionapkurl},
+            #{entity.createdate}, #{entity.modifydate}, #{entity.versionstatus})
+        </foreach>
+    </insert>
+
+    <insert id="insertOrUpdateBatch" keyProperty="id" useGeneratedKeys="true">
+        insert into appinfo.app_version(versionCode, infoId, versionApkSize, versionApkUrl, createDate, modifyDate,
+        versionStatus)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.versioncode}, #{entity.infoid}, #{entity.versionapksize}, #{entity.versionapkurl},
+            #{entity.createdate}, #{entity.modifydate}, #{entity.versionstatus})
+        </foreach>
+        on duplicate key update
+        versionCode = values(versionCode) , infoId = values(infoId) , versionApkSize = values(versionApkSize) ,
+        versionApkUrl = values(versionApkUrl) , createDate = values(createDate) , modifyDate = values(modifyDate) ,
+        versionStatus = values(versionStatus)
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update appinfo.app_version
+        <set>
+            <if test="versioncode != null and versioncode != ''">
+                versionCode = #{versioncode},
+            </if>
+            <if test="infoid != null">
+                infoId = #{infoid},
+            </if>
+            <if test="versionapksize != null and versionapksize != ''">
+                versionApkSize = #{versionapksize},
+            </if>
+            <if test="versionapkurl != null and versionapkurl != ''">
+                versionApkUrl = #{versionapkurl},
+            </if>
+            <if test="createdate != null">
+                createDate = #{createdate},
+            </if>
+            <if test="modifydate != null">
+                modifyDate = #{modifydate},
+            </if>
+            <if test="versionstatus != null">
+                versionStatus = #{versionstatus},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete
+        from appinfo.app_version
+        where id = #{id}
+    </delete>
+
+</mapper>

@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lshsd.appinfo.mapper.devUser.DevUserMapper">
+
+    <resultMap type="com.lshsd.appinfo.pojo.DevUser" id="DevUserMap">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="devcode" column="devCode" jdbcType="VARCHAR"/>
+        <result property="devpwd" column="devPwd" jdbcType="VARCHAR"/>
+        <result property="devname" column="devName" jdbcType="VARCHAR"/>
+        <result property="devemail" column="devEmail" jdbcType="VARCHAR"/>
+        <result property="devphone" column="devPhone" jdbcType="VARCHAR"/>
+        <result property="createdate" column="createDate" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="DevUserMap">
+        select id,
+               devCode,
+               devPwd,
+               devName,
+               devEmail,
+               devPhone,
+               createDate
+        from appinfo.dev_user
+        where id = #{id}
+    </select>
+
+    <!--查询总量-->
+    <select id="queryCount" resultType="int">
+        select count(1)
+        from appinfo.dev_user
+    </select>
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="DevUserMap">
+        select id,
+               devCode,
+               devPwd,
+               devName,
+               devEmail,
+               devPhone,
+               createDate
+        from appinfo.dev_user limit #{offset}, #{limit}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="DevUserMap">
+        select
+        id, devCode, devPwd, devName, devEmail, devPhone, createDate
+        from appinfo.dev_user
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="devcode != null and devcode != ''">
+                and devCode = #{devcode}
+            </if>
+            <if test="devpwd != null and devpwd != ''">
+                and devPwd = #{devpwd}
+            </if>
+            <if test="devname != null and devname != ''">
+                and devName = #{devname}
+            </if>
+            <if test="devemail != null and devemail != ''">
+                and devEmail = #{devemail}
+            </if>
+            <if test="devphone != null and devphone != ''">
+                and devPhone = #{devphone}
+            </if>
+            <if test="createdate != null">
+                and createDate = #{createdate}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+        insert into appinfo.dev_user(devCode, devPwd, devName, devEmail, devPhone, createDate)
+        values (#{devcode}, #{devpwd}, #{devname}, #{devemail}, #{devphone}, #{createdate})
+    </insert>
+
+    <insert id="insertBatch" keyProperty="id" useGeneratedKeys="true">
+        insert into appinfo.dev_user(devCode, devPwd, devName, devEmail, devPhone, createDate)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.devcode}, #{entity.devpwd}, #{entity.devname}, #{entity.devemail}, #{entity.devphone},
+            #{entity.createdate})
+        </foreach>
+    </insert>
+
+    <insert id="insertOrUpdateBatch" keyProperty="id" useGeneratedKeys="true">
+        insert into appinfo.dev_user(devCode, devPwd, devName, devEmail, devPhone, createDate)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.devcode}, #{entity.devpwd}, #{entity.devname}, #{entity.devemail}, #{entity.devphone},
+            #{entity.createdate})
+        </foreach>
+        on duplicate key update
+        devCode = values(devCode) , devPwd = values(devPwd) , devName = values(devName) , devEmail = values(devEmail) ,
+        devPhone = values(devPhone) , createDate = values(createDate)
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update appinfo.dev_user
+        <set>
+            <if test="devcode != null and devcode != ''">
+                devCode = #{devcode},
+            </if>
+            <if test="devpwd != null and devpwd != ''">
+                devPwd = #{devpwd},
+            </if>
+            <if test="devname != null and devname != ''">
+                devName = #{devname},
+            </if>
+            <if test="devemail != null and devemail != ''">
+                devEmail = #{devemail},
+            </if>
+            <if test="devphone != null and devphone != ''">
+                devPhone = #{devphone},
+            </if>
+            <if test="createdate != null">
+                createDate = #{createdate},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete
+        from appinfo.dev_user
+        where id = #{id}
+    </delete>
+
+</mapper>

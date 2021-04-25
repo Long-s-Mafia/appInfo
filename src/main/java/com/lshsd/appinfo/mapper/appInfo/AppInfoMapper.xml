@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lshsd.appinfo.mapper.appInfo.AppInfoMapper">
+
+    <resultMap type="com.lshsd.appinfo.pojo.AppInfo" id="AppInfoMap">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="appname" column="appName" jdbcType="VARCHAR"/>
+        <result property="devid" column="devId" jdbcType="INTEGER"/>
+        <result property="auditorid" column="auditorId" jdbcType="INTEGER"/>
+        <result property="status" column="status" jdbcType="INTEGER"/>
+        <result property="rstatusnotes" column="RstatusNotes" jdbcType="VARCHAR"/>
+        <result property="versionid" column="versionId" jdbcType="INTEGER"/>
+        <result property="category1" column="category1" jdbcType="INTEGER"/>
+        <result property="category2" column="category2" jdbcType="INTEGER"/>
+        <result property="category3" column="category3" jdbcType="INTEGER"/>
+        <result property="appintroduction" column="appIntroduction" jdbcType="VARCHAR"/>
+        <result property="ondate" column="onDate" jdbcType="TIMESTAMP"/>
+        <result property="underdate" column="underDate" jdbcType="TIMESTAMP"/>
+        <result property="apksize" column="apkSize" jdbcType="VARCHAR"/>
+        <result property="apkurl" column="apkUrl" jdbcType="VARCHAR"/>
+        <result property="download" column="download" jdbcType="INTEGER"/>
+        <result property="createdate" column="createDate" jdbcType="TIMESTAMP"/>
+        <result property="upddate" column="updDate" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="AppInfoMap">
+        select id,
+               appName,
+               devId,
+               auditorId,
+               status,
+               RstatusNotes,
+               versionId,
+               category1,
+               category2,
+               category3,
+               appIntroduction,
+               onDate,
+               underDate,
+               apkSize,
+               apkUrl,
+               download,
+               createDate,
+               updDate
+        from appinfo.app_info
+        where id = #{id}
+    </select>
+
+    <!--查询总量-->
+    <select id="queryCount" resultType="int">
+        select count(1)
+        from appinfo.app_info
+    </select>
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="AppInfoMap">
+        select id,
+               appName,
+               devId,
+               auditorId,
+               status,
+               RstatusNotes,
+               versionId,
+               category1,
+               category2,
+               category3,
+               appIntroduction,
+               onDate,
+               underDate,
+               apkSize,
+               apkUrl,
+               download,
+               createDate,
+               updDate
+        from appinfo.app_info limit #{offset}, #{limit}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="AppInfoMap">
+        select
+        id, appName, devId, auditorId, status, RstatusNotes, versionId, category1, category2, category3,
+        appIntroduction, onDate, underDate, apkSize, apkUrl, download, createDate, updDate
+        from appinfo.app_info
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="appname != null and appname != ''">
+                and appName = #{appname}
+            </if>
+            <if test="devid != null">
+                and devId = #{devid}
+            </if>
+            <if test="auditorid != null">
+                and auditorId = #{auditorid}
+            </if>
+            <if test="status != null">
+                and status = #{status}
+            </if>
+            <if test="rstatusnotes != null and rstatusnotes != ''">
+                and RstatusNotes = #{rstatusnotes}
+            </if>
+            <if test="versionid != null">
+                and versionId = #{versionid}
+            </if>
+            <if test="category1 != null">
+                and category1 = #{category1}
+            </if>
+            <if test="category2 != null">
+                and category2 = #{category2}
+            </if>
+            <if test="category3 != null">
+                and category3 = #{category3}
+            </if>
+            <if test="appintroduction != null and appintroduction != ''">
+                and appIntroduction = #{appintroduction}
+            </if>
+            <if test="ondate != null">
+                and onDate = #{ondate}
+            </if>
+            <if test="underdate != null">
+                and underDate = #{underdate}
+            </if>
+            <if test="apksize != null and apksize != ''">
+                and apkSize = #{apksize}
+            </if>
+            <if test="apkurl != null and apkurl != ''">
+                and apkUrl = #{apkurl}
+            </if>
+            <if test="download != null">
+                and download = #{download}
+            </if>
+            <if test="createdate != null">
+                and createDate = #{createdate}
+            </if>
+            <if test="upddate != null">
+                and updDate = #{upddate}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+        insert into appinfo.app_info(appName, devId, auditorId, status, RstatusNotes, versionId, category1, category2,
+                                     category3, appIntroduction, onDate, underDate, apkSize, apkUrl, download,
+                                     createDate, updDate)
+        values (#{appname}, #{devid}, #{auditorid}, #{status}, #{rstatusnotes}, #{versionid}, #{category1},
+                #{category2}, #{category3}, #{appintroduction}, #{ondate}, #{underdate}, #{apksize}, #{apkurl},
+                #{download}, #{createdate}, #{upddate})
+    </insert>
+
+    <insert id="insertBatch" keyProperty="id" useGeneratedKeys="true">
+        insert into appinfo.app_info(appName, devId, auditorId, status, RstatusNotes, versionId, category1, category2,
+        category3, appIntroduction, onDate, underDate, apkSize, apkUrl, download, createDate, updDate)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.appname}, #{entity.devid}, #{entity.auditorid}, #{entity.status}, #{entity.rstatusnotes},
+            #{entity.versionid}, #{entity.category1}, #{entity.category2}, #{entity.category3},
+            #{entity.appintroduction}, #{entity.ondate}, #{entity.underdate}, #{entity.apksize}, #{entity.apkurl},
+            #{entity.download}, #{entity.createdate}, #{entity.upddate})
+        </foreach>
+    </insert>
+
+    <insert id="insertOrUpdateBatch" keyProperty="id" useGeneratedKeys="true">
+        insert into appinfo.app_info(appName, devId, auditorId, status, RstatusNotes, versionId, category1, category2,
+        category3, appIntroduction, onDate, underDate, apkSize, apkUrl, download, createDate, updDate)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.appname}, #{entity.devid}, #{entity.auditorid}, #{entity.status}, #{entity.rstatusnotes},
+            #{entity.versionid}, #{entity.category1}, #{entity.category2}, #{entity.category3},
+            #{entity.appintroduction}, #{entity.ondate}, #{entity.underdate}, #{entity.apksize}, #{entity.apkurl},
+            #{entity.download}, #{entity.createdate}, #{entity.upddate})
+        </foreach>
+        on duplicate key update
+        appName = values(appName) , devId = values(devId) , auditorId = values(auditorId) , status = values(status) ,
+        RstatusNotes = values(RstatusNotes) , versionId = values(versionId) , category1 = values(category1) , category2
+        = values(category2) , category3 = values(category3) , appIntroduction = values(appIntroduction) , onDate =
+        values(onDate) , underDate = values(underDate) , apkSize = values(apkSize) , apkUrl = values(apkUrl) , download
+        = values(download) , createDate = values(createDate) , updDate = values(updDate)
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update appinfo.app_info
+        <set>
+            <if test="appname != null and appname != ''">
+                appName = #{appname},
+            </if>
+            <if test="devid != null">
+                devId = #{devid},
+            </if>
+            <if test="auditorid != null">
+                auditorId = #{auditorid},
+            </if>
+            <if test="status != null">
+                status = #{status},
+            </if>
+            <if test="rstatusnotes != null and rstatusnotes != ''">
+                RstatusNotes = #{rstatusnotes},
+            </if>
+            <if test="versionid != null">
+                versionId = #{versionid},
+            </if>
+            <if test="category1 != null">
+                category1 = #{category1},
+            </if>
+            <if test="category2 != null">
+                category2 = #{category2},
+            </if>
+            <if test="category3 != null">
+                category3 = #{category3},
+            </if>
+            <if test="appintroduction != null and appintroduction != ''">
+                appIntroduction = #{appintroduction},
+            </if>
+            <if test="ondate != null">
+                onDate = #{ondate},
+            </if>
+            <if test="underdate != null">
+                underDate = #{underdate},
+            </if>
+            <if test="apksize != null and apksize != ''">
+                apkSize = #{apksize},
+            </if>
+            <if test="apkurl != null and apkurl != ''">
+                apkUrl = #{apkurl},
+            </if>
+            <if test="download != null">
+                download = #{download},
+            </if>
+            <if test="createdate != null">
+                createDate = #{createdate},
+            </if>
+            <if test="upddate != null">
+                updDate = #{upddate},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete
+        from appinfo.app_info
+        where id = #{id}
+    </delete>
+
+</mapper>

@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lshsd.appinfo.mapper.appClass.AppClassMapper">
+
+    <resultMap type="com.lshsd.appinfo.pojo.AppClass" id="AppClassMap">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="classname" column="className" jdbcType="VARCHAR"/>
+        <result property="parent" column="parent" jdbcType="INTEGER"/>
+        <result property="createid" column="createId" jdbcType="INTEGER"/>
+        <result property="createdate" column="createDate" jdbcType="TIMESTAMP"/>
+        <result property="modifyid" column="modifyId" jdbcType="INTEGER"/>
+        <result property="modifydate" column="modifyDate" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="AppClassMap">
+        select id,
+               className,
+               parent,
+               createId,
+               createDate,
+               modifyId,
+               modifyDate
+        from appinfo.app_class
+        where id = #{id}
+    </select>
+
+    <!--查询总量-->
+    <select id="queryCount" resultType="int">
+        select count(1)
+        from appinfo.app_class
+    </select>
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="AppClassMap">
+        select id,
+               className,
+               parent,
+               createId,
+               createDate,
+               modifyId,
+               modifyDate
+        from appinfo.app_class limit #{offset}, #{limit}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="AppClassMap">
+        select
+        id, className, parent, createId, createDate, modifyId, modifyDate
+        from appinfo.app_class
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="classname != null and classname != ''">
+                and className = #{classname}
+            </if>
+            <if test="parent != null">
+                and parent = #{parent}
+            </if>
+            <if test="createid != null">
+                and createId = #{createid}
+            </if>
+            <if test="createdate != null">
+                and createDate = #{createdate}
+            </if>
+            <if test="modifyid != null">
+                and modifyId = #{modifyid}
+            </if>
+            <if test="modifydate != null">
+                and modifyDate = #{modifydate}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+        insert into appinfo.app_class(className, parent, createId, createDate, modifyId, modifyDate)
+        values (#{classname}, #{parent}, #{createid}, #{createdate}, #{modifyid}, #{modifydate})
+    </insert>
+
+    <insert id="insertBatch" keyProperty="id" useGeneratedKeys="true">
+        insert into appinfo.app_class(className, parent, createId, createDate, modifyId, modifyDate)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.classname}, #{entity.parent}, #{entity.createid}, #{entity.createdate}, #{entity.modifyid},
+            #{entity.modifydate})
+        </foreach>
+    </insert>
+
+    <insert id="insertOrUpdateBatch" keyProperty="id" useGeneratedKeys="true">
+        insert into appinfo.app_class(className, parent, createId, createDate, modifyId, modifyDate)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.classname}, #{entity.parent}, #{entity.createid}, #{entity.createdate}, #{entity.modifyid},
+            #{entity.modifydate})
+        </foreach>
+        on duplicate key update
+        className = values(className) , parent = values(parent) , createId = values(createId) , createDate =
+        values(createDate) , modifyId = values(modifyId) , modifyDate = values(modifyDate)
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update appinfo.app_class
+        <set>
+            <if test="classname != null and classname != ''">
+                className = #{classname},
+            </if>
+            <if test="parent != null">
+                parent = #{parent},
+            </if>
+            <if test="createid != null">
+                createId = #{createid},
+            </if>
+            <if test="createdate != null">
+                createDate = #{createdate},
+            </if>
+            <if test="modifyid != null">
+                modifyId = #{modifyid},
+            </if>
+            <if test="modifydate != null">
+                modifyDate = #{modifydate},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete
+        from appinfo.app_class
+        where id = #{id}
+    </delete>
+
+</mapper>
