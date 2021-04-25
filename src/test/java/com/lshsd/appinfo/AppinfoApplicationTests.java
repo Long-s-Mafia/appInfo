@@ -18,6 +18,7 @@ class AppinfoApplicationTests {
     @Test
     void contextLoads() {
         /*测试AppClass中共有几行数据*/
+        /*测试*/
         System.out.println(appClassMapper.queryCount());
     }
 
