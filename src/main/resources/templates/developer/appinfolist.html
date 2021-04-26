@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:include="developer/common/header::head('APP信息管理平台')"/>
+</head>
+<body>
+<div class="main-panel">
+    <div class="main-content">
+        <div class="content-wrapper">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="card-title-wrap bar-warning">
+                                    <h4 class="card-title"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">发票摘要</font></font></h4>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="card-block">
+                                    <div class="table-responsive">
+                                        <table id="recent-orders" class="table table-hover table-xl mb-0">
+                                            <thead>
+                                            <tr>
+                                                <th class="border-top-0"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">地位</font></font></th>
+                                                <th class="border-top-0"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">发票＃</font></font></th>
+                                                <th class="border-top-0"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">顾客姓名</font></font></th>
+                                                <th class="border-top-0"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">产品</font></font></th>
+                                                <th class="border-top-0"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">分类目录</font></font></th>
+                                                <th class="border-top-0"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">船运</font></font></th>
+                                                <th class="border-top-0"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">数量</font></font></th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr>
+                                                <td class="text-truncate"><i class="fa fa-dot-circle-o success font-medium-1 mr-1"></i><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> 有薪酬的</font></font></td>
+                                                <td class="text-truncate"><a href="#"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">INV-001001</font></font></a></td>
+                                                <td class="text-truncate">
+                                        <span class="avatar avatar-xs">
+                                            <img class="box-shadow-2" src="../../static/app-assets/img/portrait/small/avatar-s-4.jpg" alt="头像">
+                                        </span>
+                                                    <span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">伊丽莎白·W</font></font></span>
+                                                </td>
+                                                <td class="text-truncate p-1">
+                                                    <ul class="list-unstyled users-list m-0">
+                                                        <li data-toggle="tooltip" data-popup="tooltip-custom" data-original-title="Kimberly Simmons" class="avatar avatar-sm pull-up">
+                                                            <img class="media-object rounded-circle no-border-top-radius no-border-bottom-radius" src="../../static/app-assets/img/portfolio/portfolio-1.jpg" alt="头像">
+                                                        </li>
+                                                        <li data-toggle="tooltip" data-popup="tooltip-custom" data-original-title="Willie Torres" class="avatar avatar-sm pull-up">
+                                                            <img class="media-object rounded-circle no-border-top-radius no-border-bottom-radius" src="../../static/app-assets/img/portfolio/portfolio-2.jpg" alt="头像">
+                                                        </li>
+                                                        <li data-toggle="tooltip" data-popup="tooltip-custom" data-original-title="Rebecca Jones" class="avatar avatar-sm pull-up">
+                                                            <img class="media-object rounded-circle no-border-top-radius no-border-bottom-radius" src="../../static/app-assets/img/portfolio/portfolio-4.jpg" alt="头像">
+                                                        </li>
+                                                        <li class="avatar avatar-sm">
+                                                            <span class="badge badge-info"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">+1个</font></font></span>
+                                                        </li>
+                                                    </ul>
+                                                </td>
+                                                <td>
+                                                    <button type="button" class="btn btn-sm btn-outline-danger round"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">食物</font></font></button>
+                                                </td>
+                                                <td>
+                                                    <div class="progress" style="height: 8px;">
+                                                        <div class="progress-bar progress-bar-striped bg-danger" role="progressbar" aria-valuenow="25" aria-valuemin="20" aria-valuemax="100" style="width:25%"></div>
+                                                    </div>
+                                                    <ngb-progressbar type="danger" [value]="25" [striped]="true" class="progress-bar-md bg-gradient-x-danger"></ngb-progressbar>
+                                                </td>
+                                                <td class="text-truncate"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ 1200.00</font></font></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-truncate"><i class="fa fa-dot-circle-o danger font-medium-1 mr-1"></i><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> 拒绝</font></font></td>
+                                                <td class="text-truncate"><a href="#"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">INV-001002</font></font></a></td>
+                                                <td class="text-truncate">
+                                        <span class="avatar avatar-xs">
+                                            <img class="box-shadow-2" src="../../static/app-assets/img/portrait/small/avatar-s-5.jpg" alt="头像">
+                                        </span>
+                                                    <span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">多丽丝·R。</font></font></span>
+                                                </td>
+                                                <td class="text-truncate p-1">
+                                                    <ul class="list-unstyled users-list m-0">
+                                                        <li data-toggle="tooltip" data-popup="tooltip-custom" data-original-title="Kimberly Simmons" class="avatar avatar-sm pull-up">
+                                                            <img class="media-object rounded-circle no-border-top-radius no-border-bottom-radius" src="../../static/app-assets/img/portfolio/portfolio-5.jpg" alt="头像">
+                                                        </li>
+                                                        <li data-toggle="tooltip" data-popup="tooltip-custom" data-original-title="Willie Torres" class="avatar avatar-sm pull-up">
+                                                            <img class="media-object rounded-circle no-border-top-radius no-border-bottom-radius" src="../../static/app-assets/img/portfolio/portfolio-6.jpg" alt="头像">
+                                                        </li>
+                                                        <li class="avatar avatar-sm">
+                                                            <span class="badge badge-info"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">+ 2更多</font></font></span>
+                                                        </li>
+                                                    </ul>
+                                                </td>
+                                                <td>
+                                                    <button type="button" class="btn btn-sm btn-outline-warning round"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">电子产品</font></font></button>
+                                                </td>
+                                                <td>
+                                                    <div class="progress" style="height: 8px;">
+                                                        <div class="progress-bar progress-bar-striped bg-warning" role="progressbar" aria-valuenow="45" aria-valuemin="20" aria-valuemax="100" style="width:45%"></div>
+                                                    </div>
+                                                    <ngb-progressbar type="warning" [value]="45" [striped]="true" class="progress-bar-md bg-gradient-x-warning"></ngb-progressbar>
+                                                </td>
+                                                <td class="text-truncate"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ 1850.00</font></font></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-truncate"><i class="fa fa-dot-circle-o warning font-medium-1 mr-1"></i><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> 待办的</font></font></td>
+                                                <td class="text-truncate"><a href="#"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">INV-001003</font></font></a></td>
+                                                <td class="text-truncate">
+                                        <span class="avatar avatar-xs">
+                                            <img class="box-shadow-2" src="../../static/app-assets/img/portrait/small/avatar-s-6.jpg" alt="头像">
+                                        </span>
+                                                    <span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">梅根S.</font></font></span>
+                                                </td>
+                                                <td class="text-truncate p-1">
+                                                    <ul class="list-unstyled users-list m-0">
+                                                        <li data-toggle="tooltip" data-popup="tooltip-custom" data-original-title="Kimberly Simmons" class="avatar avatar-sm pull-up">
+                                                            <img class="media-object rounded-circle no-border-top-radius no-border-bottom-radius" src="../../static/app-assets/img/portfolio/portfolio-2.jpg" alt="头像">
+                                                        </li>
+                                                        <li data-toggle="tooltip" data-popup="tooltip-custom" data-original-title="Willie Torres" class="avatar avatar-sm pull-up">
+                                                            <img class="media-object rounded-circle no-border-top-radius no-border-bottom-radius" src="../../static/app-assets/img/portfolio/portfolio-5.jpg" alt="头像">
+                                                        </li>
+                                                    </ul>
+                                                </td>
+                                                <td>
+                                                    <button type="button" class="btn btn-sm btn-outline-success round"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">杂货</font></font></button>
+                                                </td>
+                                                <td>
+                                                    <div class="progress" style="height: 8px;">
+                                                        <div class="progress-bar progress-bar-striped bg-success" role="progressbar" aria-valuenow="75" aria-valuemin="20" aria-valuemax="100" style="width:75%"></div>
+                                                    </div>
+                                                    <ngb-progressbar type="success" [value]="75" [striped]="true" class="progress-bar-md bg-gradient-x-success"></ngb-progressbar>
+                                                </td>
+                                                <td class="text-truncate"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ 3200.00</font></font></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-truncate"><i class="fa fa-dot-circle-o success font-medium-1 mr-1"></i><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> 有薪酬的</font></font></td>
+                                                <td class="text-truncate"><a href="#"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">INV-001004</font></font></a></td>
+                                                <td class="text-truncate">
+                                        <span class="avatar avatar-xs">
+                                            <img class="box-shadow-2" src="../../static/app-assets/img/portrait/small/avatar-s-15.jpg" alt="头像">
+                                        </span>
+                                                    <span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">安德鲁·D</font></font></span>
+                                                </td>
+                                                <td class="text-truncate p-1">
+                                                    <ul class="list-unstyled users-list m-0">
+                                                        <li data-toggle="tooltip" data-popup="tooltip-custom" data-original-title="Kimberly Simmons" class="avatar avatar-sm pull-up">
+                                                            <img class="media-object rounded-circle no-border-top-radius no-border-bottom-radius" src="../../static/app-assets/img/portfolio/portfolio-6.jpg" alt="头像">
+                                                        </li>
+                                                        <li data-toggle="tooltip" data-popup="tooltip-custom" data-original-title="Willie Torres" class="avatar avatar-sm pull-up">
+                                                            <img class="media-object rounded-circle no-border-top-radius no-border-bottom-radius" src="../../static/app-assets/img/portfolio/portfolio-1.jpg" alt="头像">
+                                                        </li>
+                                                        <li class="avatar avatar-sm">
+                                                            <span class="badge badge-info"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">+1个</font></font></span>
+                                                        </li>
+                                                    </ul>
+                                                </td>
+                                                <td>
+                                                    <button type="button" class="btn btn-sm btn-outline-info round"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">服饰类</font></font></button>
+                                                </td>
+                                                <td>
+                                                    <div class="progress" style="height: 8px;">
+                                                        <div class="progress-bar progress-bar-striped bg-info" role="progressbar" aria-valuenow="65" aria-valuemin="20" aria-valuemax="100" style="width:65%"></div>
+                                                    </div>
+                                                    <ngb-progressbar type="info" [value]="65" [striped]="true" class="progress-bar-md bg-gradient-x-info"></ngb-progressbar>
+                                                </td>
+                                                <td class="text-truncate"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ 4500.00</font></font></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-truncate"><i class="fa fa-dot-circle-o success font-medium-1 mr-1"></i><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> 有薪酬的</font></font></td>
+                                                <td class="text-truncate"><a href="#"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">INV-001005</font></font></a></td>
+                                                <td class="text-truncate">
+                                        <span class="avatar avatar-xs">
+                                            <img class="box-shadow-2" src="../../static/app-assets/img/portrait/small/avatar-s-9.jpg" alt="头像">
+                                        </span>
+                                                    <span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">沃尔特·R。</font></font></span>
+                                                </td>
+                                                <td class="text-truncate p-1">
+                                                    <ul class="list-unstyled users-list m-0">
+                                                        <li data-toggle="tooltip" data-popup="tooltip-custom" data-original-title="Kimberly Simmons" class="avatar avatar-sm pull-up">
+                                                            <img class="media-object rounded-circle no-border-top-radius no-border-bottom-radius" src="../../static/app-assets/img/portfolio/portfolio-5.jpg" alt="头像">
+                                                        </li>
+                                                        <li data-toggle="tooltip" data-popup="tooltip-custom" data-original-title="Willie Torres" class="avatar avatar-sm pull-up">
+                                                            <img class="media-object rounded-circle no-border-top-radius no-border-bottom-radius" src="../../static/app-assets/img/portfolio/portfolio-3.jpg" alt="头像">
+                                                        </li>
+                                                    </ul>
+                                                </td>
+                                                <td>
+                                                    <button type="button" class="btn btn-sm btn-outline-danger round"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">食物</font></font></button>
+                                                </td>
+                                                <td>
+                                                    <div class="progress" style="height: 8px;">
+                                                        <div class="progress-bar progress-bar-striped bg-primary" role="progressbar" aria-valuenow="35" aria-valuemin="20" aria-valuemax="100" style="width:35%"></div>
+                                                    </div>
+                                                    <ngb-progressbar type="primary" [value]="35" [striped]="true" class="progress-bar-md bg-gradient-x-primary"></ngb-progressbar>
+                                                </td>
+                                                <td class="text-truncate"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ 1500.00</font></font></td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--footer-->
+<th:block th:include="developer/common/footer::footer"/>
+</body>
+
+</html>

@@ -1,0 +1,137 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org"  th:fragment="head(title)" class="loading">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+    <title>APP信息管理平台</title>
+    <!--<link rel="shortcut icon" type="image/x-icon" href="app-assets/img/ico/favicon.ico">-->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-touch-fullscreen" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <link href="https://fonts.googleapis.com/css?family=Rubik:300,400,500,700,900%7CMontserrat:300,400,500,600,700,800,900" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/app-assets/fonts/feather/style.min.css">
+    <link rel="stylesheet" type="text/css" href="/app-assets/fonts/simple-line-icons/style.css">
+    <link rel="stylesheet" type="text/css" href="/app-assets/fonts/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/app-assets/vendors/css/perfect-scrollbar.min.css">
+    <link rel="stylesheet" type="text/css" href="/app-assets/vendors/css/prism.min.css">
+    <link rel="stylesheet" type="text/css" href="/app-assets/vendors/css/chartist.min.css">
+    <link rel="stylesheet" type="text/css" href="/app-assets/css/app.css">
+</head>
+<style>
+     .logo, .off-canvas-sidebar .logo {
+        position: relative;
+        /*padding: 85px 15px 18px 10px;*/
+        z-index: 4;
+    }
+    .logo-text {
+         color: #FFFFFF;
+     }
+     .logo .logo-text {
+         text-transform: uppercase;
+         padding: 5px 0;
+         display: block;
+         font-size: 1.5rem;
+         letter-spacing: 2px;
+         color: #FFFFFF;
+         text-align: left;
+         font-weight: 400;
+     }
+     .sidebar-header a.nav-toggle {
+         display: inline-block;
+         position: absolute;
+         width: 20px;
+         height: 20px;
+         line-height: 20px;
+         text-align: center;
+         right: 18px;
+         top: 40px;
+         color: rgba(255, 255, 255, 0.55);
+     }
+</style>
+<body data-col="2-columns" class=" 2-columns ">
+<!-- ////////////////////////////////////////////////////////////////////////////-->
+<div class="wrapper">
+
+
+    <div data-active-color="white" data-background-color="black" data-image="app-assets/img/sidebar-bg/01.jpg" class="app-sidebar">
+        <div class="sidebar-header">
+            <div class="logo clearfix">
+                <a href="index.html" class="logo-text float-left">
+                    <span class="text align-middle">admin</span>
+                </a>
+                <a id="sidebarToggle" href="javascript:;" class="nav-toggle d-none d-sm-none d-md-none d-lg-block">
+                    <i data-toggle="expanded" class="ft-disc toggle-icon"></i>
+                </a>
+                <!--<a id="sidebarClose" href="javascript:;" class="nav-close d-block d-md-block d-lg-none d-xl-none">
+                    <i class="ft-circle"></i>
+                </a>-->
+            </div>
+        </div>
+        <div class="sidebar-content">
+            <div class="nav-container">
+                <ul id="main-menu-navigation" data-menu="menu-navigation" class="navigation navigation-main">
+                    <li class="has-sub nav-item"><a href="#"><i class="icon-home"></i><span data-i18n="" class="menu-title">控制台</span><span class="tag badge badge-pill badge-danger mt-1">1</span></a>
+                        <ul class="menu-content">
+                            <li class="active"><a href="/index" class="menu-item">Analytics</a></li>
+                        </ul>
+                    </li>
+                    <li class="has-sub nav-item"><a href="#"><i class="icon-screen-desktop"></i><span data-i18n="" class="menu-title">APP账户管理</span></a>
+                        <ul class="menu-content">
+
+                            <li><a href="#" class="menu-item">APP开发者账户申请</a></li>
+                            <li><a href="#" class="menu-item">个人账户信息维护</a></li>
+
+                        </ul>
+                    </li>
+                    <li class="has-sub nav-item"><a href="#"><i class="icon-magnet"></i><span data-i18n="" class="menu-title">APP应用管理</span></a>
+                        <ul class="menu-content">
+                            <li><a href="/appinfolist.html" class="menu-item" >APP维护</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+
+    </div>
+    <nav class="navbar navbar-expand-lg navbar-light bg-faded">
+        <div>
+            <div class="sidebar-header" style="width: 235px">
+                <div class="logo clearfix">
+                    <a href="index.html" class="logo-text float-left">
+                        <span class="text align-middle">APP信息管理平台</span>
+                    </a>
+                    <!--<a id="sidebarToggle" href="javascript:;" class="nav-toggle d-none d-sm-none d-md-none d-lg-block">
+                        <i data-toggle="expanded" class="ft-disc toggle-icon"></i>
+                    </a>
+                    <a id="sidebarClose" href="javascript:;" class="nav-close d-block d-md-block d-lg-none d-xl-none">
+                        <i class="ft-circle"></i>
+                    </a>-->
+                </div>
+            </div>
+        </div>
+
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" data-toggle="collapse" class="navbar-toggle d-lg-none float-left"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><span class="d-lg-none navbar-right navbar-collapse-toggle"><a class="open-navbar-container"><i class="ft-more-vertical"></i></a></span>
+            </div>
+            <div class="navbar-container">
+                <div id="navbarSupportedContent" class="collapse navbar-collapse">
+                    <ul class="navbar-nav">
+                        <li class="dropdown nav-item mr-0">
+                            <a id="dropdownBasic3" href="#" data-toggle="dropdown" class="nav-link position-relative dropdown-user-link dropdown-toggle">
+                            <span class="avatar avatar-online">
+                                <img id="navbar-avatar" src="/app-assets/img/portrait/small/avatar-s-3.jpg" alt="avatar"/>
+                            </span>
+                            <p class="d-none">User Settings</p></a>
+                            <div aria-labelledby="dropdownBasic3" class="dropdown-menu dropdown-menu-right">
+                                <div class="arrow_box_right">
+                                    <a href="javascript:;" class="dropdown-item"><i class="ft-power mr-2"></i><span>Logout</span></a>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>

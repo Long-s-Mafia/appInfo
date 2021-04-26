@@ -3,13 +3,14 @@ package com.lshsd.appinfo.service.appState;
 import com.lshsd.appinfo.pojo.AppState;
 import com.lshsd.appinfo.util.PageUtil;
 
+
 import java.util.List;
 
 /**
  * (AppState)表服务接口
  *
  * @author mr.sun
- * @since 2021-04-25 15:10:06
+ * @since 2021-04-26 08:44:00
  */
 public interface AppStateService {
 

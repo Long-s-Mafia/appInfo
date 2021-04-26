@@ -4,6 +4,7 @@
 
     <resultMap type="com.lshsd.appinfo.pojo.AppState" id="AppStateMap">
         <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="tableId" column="table_id" jdbcType="INTEGER"/>
         <result property="statename" column="stateName" jdbcType="VARCHAR"/>
         <result property="createid" column="createId" jdbcType="INTEGER"/>
         <result property="createdate" column="createDate" jdbcType="TIMESTAMP"/>
@@ -14,6 +15,7 @@
     <!--查询单个-->
     <select id="queryById" resultMap="AppStateMap">
         select id,
+               table_id,
                stateName,
                createId,
                createDate,
@@ -31,6 +33,7 @@
     <!--查询指定行数据-->
     <select id="queryAllByLimit" resultMap="AppStateMap">
         select id,
+               table_id,
                stateName,
                createId,
                createDate,
@@ -42,11 +45,14 @@
     <!--通过实体作为筛选条件查询-->
     <select id="queryAll" resultMap="AppStateMap">
         select
-        id, stateName, createId, createDate, modifyId, modifyDate
+        id, table_id, stateName, createId, createDate, modifyId, modifyDate
         from appinfo.app_state
         <where>
             <if test="id != null">
                 and id = #{id}
+            </if>
+            <if test="tableId != null">
+                and table_id = #{tableId}
             </if>
             <if test="statename != null and statename != ''">
                 and stateName = #{statename}
@@ -68,33 +74,38 @@
 
     <!--新增所有列-->
     <insert id="insert" keyProperty="id" useGeneratedKeys="true">
-        insert into appinfo.app_state(stateName, createId, createDate, modifyId, modifyDate)
-        values (#{statename}, #{createid}, #{createdate}, #{modifyid}, #{modifydate})
+        insert into appinfo.app_state(table_id, stateName, createId, createDate, modifyId, modifyDate)
+        values (#{tableId}, #{statename}, #{createid}, #{createdate}, #{modifyid}, #{modifydate})
     </insert>
 
     <insert id="insertBatch" keyProperty="id" useGeneratedKeys="true">
-        insert into appinfo.app_state(stateName, createId, createDate, modifyId, modifyDate)
+        insert into appinfo.app_state(table_id, stateName, createId, createDate, modifyId, modifyDate)
         values
         <foreach collection="entities" item="entity" separator=",">
-            (#{entity.statename}, #{entity.createid}, #{entity.createdate}, #{entity.modifyid}, #{entity.modifydate})
+            (#{entity.tableId}, #{entity.statename}, #{entity.createid}, #{entity.createdate}, #{entity.modifyid},
+            #{entity.modifydate})
         </foreach>
     </insert>
 
     <insert id="insertOrUpdateBatch" keyProperty="id" useGeneratedKeys="true">
-        insert into appinfo.app_state(stateName, createId, createDate, modifyId, modifyDate)
+        insert into appinfo.app_state(table_id, stateName, createId, createDate, modifyId, modifyDate)
         values
         <foreach collection="entities" item="entity" separator=",">
-            (#{entity.statename}, #{entity.createid}, #{entity.createdate}, #{entity.modifyid}, #{entity.modifydate})
+            (#{entity.tableId}, #{entity.statename}, #{entity.createid}, #{entity.createdate}, #{entity.modifyid},
+            #{entity.modifydate})
         </foreach>
         on duplicate key update
-        stateName = values(stateName) , createId = values(createId) , createDate = values(createDate) , modifyId =
-        values(modifyId) , modifyDate = values(modifyDate)
+        table_id = values(table_id) , stateName = values(stateName) , createId = values(createId) , createDate =
+        values(createDate) , modifyId = values(modifyId) , modifyDate = values(modifyDate)
     </insert>
 
     <!--通过主键修改数据-->
     <update id="update">
         update appinfo.app_state
         <set>
+            <if test="tableId != null">
+                table_id = #{tableId},
+            </if>
             <if test="statename != null and statename != ''">
                 stateName = #{statename},
             </if>

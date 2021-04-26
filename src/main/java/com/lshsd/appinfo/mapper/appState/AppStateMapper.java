@@ -10,7 +10,7 @@ import java.util.List;
  * (AppState)表数据库访问层
  *
  * @author mr.sun
- * @since 2021-04-25 15:10:05
+ * @since 2021-04-26 08:43:58
  */
 @Repository
 public interface AppStateMapper {

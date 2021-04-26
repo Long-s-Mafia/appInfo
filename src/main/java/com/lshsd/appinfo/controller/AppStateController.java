@@ -2,6 +2,7 @@ package com.lshsd.appinfo.controller;
 
 import com.lshsd.appinfo.pojo.AppState;
 import com.lshsd.appinfo.service.appState.AppStateService;
+
 import com.lshsd.appinfo.util.PageUtil;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -14,7 +15,7 @@ import javax.validation.Valid;
  * (AppState)表控制层
  *
  * @author mr.sun
- * @since 2021-04-25 15:10:08
+ * @since 2021-04-26 08:44:02
  */
 @Controller
 @RequestMapping("appState")
@@ -24,7 +25,6 @@ public class AppStateController {
      */
     @Resource
     private AppStateService appStateService;
-
 
 
     @GetMapping("page")

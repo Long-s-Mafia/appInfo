@@ -17,7 +17,7 @@ import javax.validation.Valid;
  * @since 2021-04-25 15:09:56
  */
 @Controller
-@RequestMapping("appClass")
+@RequestMapping("/appClass")
 public class AppClassController {
     /**
      * 服务对象
@@ -25,6 +25,10 @@ public class AppClassController {
     @Resource
     private AppClassService appClassService;
 
+    @RequestMapping("/index")
+    public String index(){
+        return "developer/index";
+    }
 
 
     @GetMapping("page")

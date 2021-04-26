@@ -7,16 +7,20 @@ import java.util.Date;
  * (AppState)实体类
  *
  * @author mr.sun
- * @since 2021-04-25 15:10:05
+ * @since 2021-04-26 08:44:34
  */
 public class AppState implements Serializable {
-    private static final long serialVersionUID = -59059537423911393L;
+    private static final long serialVersionUID = 408965929874049272L;
     /**
      * 编号
      */
     private Integer id;
     /**
      * 状态名称（aap:1,版本:2,用户:3）
+     */
+    private Integer tableId;
+    /**
+     * 类型名称
      */
     private String statename;
     /**
@@ -43,6 +47,14 @@ public class AppState implements Serializable {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public Integer getTableId() {
+        return tableId;
+    }
+
+    public void setTableId(Integer tableId) {
+        this.tableId = tableId;
     }
 
     public String getStatename() {
@@ -88,7 +100,8 @@ public class AppState implements Serializable {
     public AppState() {
     }
 
-    public AppState(String statename, Integer createid, Date createdate, Integer modifyid, Date modifydate) {
+    public AppState(Integer tableId, String statename, Integer createid, Date createdate, Integer modifyid, Date modifydate) {
+        this.tableId = tableId;
         this.statename = statename;
         this.createid = createid;
         this.createdate = createdate;
@@ -96,8 +109,9 @@ public class AppState implements Serializable {
         this.modifydate = modifydate;
     }
 
-    public AppState(Integer id, String statename, Integer createid, Date createdate, Integer modifyid, Date modifydate) {
+    public AppState(Integer id, Integer tableId, String statename, Integer createid, Date createdate, Integer modifyid, Date modifydate) {
         this.id = id;
+        this.tableId = tableId;
         this.statename = statename;
         this.createid = createid;
         this.createdate = createdate;

@@ -2,6 +2,7 @@ package com.lshsd.appinfo.service.appState;
 
 import com.lshsd.appinfo.mapper.appState.AppStateMapper;
 import com.lshsd.appinfo.pojo.AppState;
+
 import com.lshsd.appinfo.util.PageUtil;
 import org.springframework.stereotype.Service;
 
@@ -13,7 +14,7 @@ import java.util.List;
  * (AppState)表服务实现类
  *
  * @author mr.sun
- * @since 2021-04-25 15:10:07
+ * @since 2021-04-26 08:44:01
  */
 @Service("appStateService")
 public class AppStateServiceImpl implements AppStateService {
